@@ -1,5 +1,4 @@
-// Try edit message
-function generateCode128B(numberToEncode, idCanvas, modulaWidth = '0.04cm') 
+function generateCode128(numberToEncode, idCanvas, modulaWidth = '0.04cm') 
 {
   const canvas = document.getElementById(idCanvas);
   canvas.setAttribute("shape-rendering", "crispEdges");
