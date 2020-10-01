@@ -38,9 +38,15 @@ function generateCode128(numberToEncode, idCanvas, modulaWidth = '0.04cm')
     const barcodeBodyValues = numberPairs.reduce((acc, numPair) =>
       (numPair.length===2) ? [...acc, numPair] : [...acc, 101 ,16+(+numPair)]
     ,[]);
-    const barcodeFullValus = [105,...barcodeBodyValues, checkSumCalc(105, barcodeBodyValues), 108]
-    console.log(barcodeFullValus);
-    barcodeFullValus.forEach((value, index) => createBlock(value, index));
+    const barcodeFullValues = [105,...barcodeBodyValues, checkSumCalc(105, barcodeBodyValues), 108]
+    console.log(barcodeFullValues);
+    barcodeFullValues.forEach((value, index) => createBlock(value, index));
+
+    const updateWidthCanvas = ()=>{
+      canvas.style.width = (canvas.getBBox().width + 5) + "px";
+    }
+    updateWidthCanvas();
+
   };
   const checkSumCalc = (startValue, barcodeValuesBody) => {
     const checkSum = barcodeValuesBody.reduce( (acc, value, index) => acc + (value * (index+1) ), startValue) % 103;
