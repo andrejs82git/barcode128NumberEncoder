@@ -27,14 +27,7 @@ function generateCode128(numberToEncode, idCanvas, modulaWidth = '0.04cm')
     });
   };
   createBarcode = (number) => {
-    const numberPairs = [...number].reduce((acc, num, index) => {
-       if (!(index&1)) {
-        return [...acc,""+num]
-      } else {
-        acc[acc.length-1] = acc[acc.length-1] + num;
-        return acc;
-      }
-    },[]);
+    const numberPairs = number.replace(/(\d\d)/g,"$1;").split(";").filter(item=>item.length>0);
     const barcodeBodyValues = numberPairs.reduce((acc, numPair) =>
       (numPair.length===2) ? [...acc, numPair] : [...acc, 101 ,16+(+numPair)]
     ,[]);
